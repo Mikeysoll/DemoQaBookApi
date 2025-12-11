@@ -13,7 +13,7 @@ public class TestBase {
     static void setup() {
         Configuration.baseUrl = "https://demoqa.com";
         RestAssured.baseURI = "https://demoqa.com";
-        Configuration.holdBrowserOpen = true;
+        // Configuration.holdBrowserOpen = true;
     }
 
     @AfterEach
