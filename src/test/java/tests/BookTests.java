@@ -9,6 +9,7 @@ import tests.api.BasketAPI;
 import tests.base.TestBase;
 import tests.models.AddBookResponse;
 import tests.models.AuthResponse;
+import tests.models.AuthUtils;
 
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.*;
@@ -42,23 +43,19 @@ public class BookTests extends TestBase {
     @Step("Открываем профиль и устанавливаем куки для авторизации")
     private void openProfileAndSetCookies(AuthResponse authResponse) {
         open("/images/favicon.ico"); // нужен любой URL, чтобы Selenide инициализировал драйвер
-        getWebDriver().manage().addCookie(new Cookie("userID", authResponse.getUserId()));
-        getWebDriver().manage().addCookie(new Cookie("expires", authResponse.getExpires()));
-        getWebDriver().manage().addCookie(new Cookie("token", authResponse.getToken()));
+        AuthUtils.setAuthCookies(authResponse);
         open("/profile");
     }
 
     @Step("Удаляем книгу из профиля")
     private void deleteBook() {
-        $("#delete-record-undefined").click();
-        $("#closeSmallModal-ok").click();
+        profilePage.deleteBook()
+                .closeModal();
     }
 
     @Step("Проверяем, что книга удалена")
     private void verifyBookDeleted() {
-        $("#userName-value").shouldHave(Condition.text("Biam"));
-//        $(".mr-2 a").shouldNotHave(Condition.attributeMatching("href", ".*" + isbn));
-        $$(".mr-2 a").findBy(Condition.attribute("href", isbn)).shouldNot(exist);
-
+        profilePage.checkUserName("Biam")
+                .shouldNotHaveBook(isbn);
     }
 }

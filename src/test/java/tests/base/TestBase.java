@@ -7,13 +7,17 @@ import io.qameta.allure.selenide.AllureSelenide;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import pages.ProfilePage;
 
 import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class TestBase {
+
+    protected ProfilePage profilePage = new ProfilePage();
 
     @BeforeAll
     static void setup() {
