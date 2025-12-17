@@ -3,6 +3,7 @@ package tests.api;
 import tests.models.AddBookRequest;
 import tests.models.AddBookResponse;
 
+import static helpers.CustomAllureListener.withCustomTemplates;
 import static io.restassured.RestAssured.given;
 
 public class BasketAPI {
@@ -24,6 +25,7 @@ public class BasketAPI {
     public void clearBasket(String userId, String token){
 
         given()
+                .filter(withCustomTemplates())
                 .headers("Authorization", "Bearer " + token)
                 .contentType("application/json")
                 .when()
