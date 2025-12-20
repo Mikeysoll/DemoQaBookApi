@@ -1,19 +1,12 @@
 package tests;
 
-import com.codeborne.selenide.Condition;
-import io.qameta.allure.Step;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.Cookie;
 import tests.api.AuthorizationAPI;
 import tests.api.BasketAPI;
 import tests.base.TestBase;
-import tests.models.AddBookResponse;
 import tests.models.AuthResponse;
 import tests.models.AuthUtils;
 
-import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.qameta.allure.Allure.step;
 import static tests.data.TestData.*;
 

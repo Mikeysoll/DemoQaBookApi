@@ -2,7 +2,6 @@ package tests.models;
 
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.Cookie;
-import tests.models.AuthResponse;
 
 import static com.codeborne.selenide.Selenide.open;
 
